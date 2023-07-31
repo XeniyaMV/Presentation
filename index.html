@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/black.css">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<h2>Regular expressions</h2>
+					<h6>Xeniya Gazizova</h6>
+				</section>
+				<section>
+					<section>
+						<h3>
+							Introduction
+						</h3>
+					</section>
+					<section>
+						<ol>
+							<li> john.doe@example.com </li>
+							<li> @example.com </li>
+							<li> contact@123website.net </li>
+							<li> user label@email-service.com </li>
+							<li> info@example.travel </li>
+							<li> john.doe@example </li>
+							<li> user@.com </li>
+						</ol>
+					</section>
+					<section>
+						<ol>
+							<li> john.doe@example.com </li>
+							<li style="background-color: #E1BC4A;"> @example.com </li>
+							<li> contact@123website.net </li>
+							<li style="background-color: #E1BC4A;"> user label@email-service.com </li>
+							<li> info@example.travel </li>
+							<li style="background-color: #E1BC4A;"> john.doe@example </li>
+							<li style="background-color: #E1BC4A;"> user@.com </li>
+						</ol>
+					</section>
+					<section>
+						pattern: "username@domain.com"
+					</section>
+					<section>
+						But how can we programmatically achieve this?
+					</section>
+				</section>
+				<section>
+					<section>
+						<h3>Definition</h3>
+					</section>
+					<section>
+						<h3 style="color: #E1BC4A;">Regular Expressions</h3>
+						<p>
+							<h4 style="color: #E1BC4A;">What?</h4>
+						</p>
+						<p>
+							<h4 style="color: #E1BC4A;">Why?</h4>
+						</p> 
+					</section>
+					<section>
+						<h3 style="color: #E1BC4A;">Regular Expressions</h3>
+						<p>
+							<h4 style="color: #E1BC4A;">What?</h4>
+							They are patterns used to match character combinations in strings.
+						</p>
+						<p>
+							<h4 style="color: #E1BC4A;">Why?</h4>
+						</p> 
+					</section>
+					<section>
+						<h3 style="color: #E1BC4A;">Regular Expressions</h3>
+						<p>
+							<h4 style="color: #E1BC4A;">What?</h4>
+							They are patterns used to match character combinations in strings.
+						</p>
+						<p>
+							<h4 style="color: #E1BC4A;">Why?</h4>
+							They provide a concise and flexible way to search, extract, and manipulate text in JavaScript.
+						</p> 
+					</section>
+				</section>
+				<section>
+					<section>
+						<h3>Basic Syntax</h3>
+					</section>
+					<section>
+						<h3>Creating a regular expression</h3>
+						<ul>
+							<li>Using a regular expression literal, which consists of a pattern enclosed between slashes
+								<pre>
+									<code data-trim data-noescape>
+										const re = /ab+c/;
+									</code>
+								</pre>
+							</li>
+							<li>
+								Calling the constructor function of the RegExp object
+								<pre>
+									<code data-trim data-noescape>
+										const re = new RegExp("ab+c");
+									</code>
+								</pre>
+							</li>
+						</ul>
+					</section>
+					<section>
+						<h3>How to use?</h3>
+						<p>Regular expressions are used with the <span style="color: #E1BC4A;">RegExp</span> methods.</p>
+						<p><span style="color: #E1BC4A;">RegExp.prototype.test()</span> is  a 
+							method that checks for a match in a string. It returns <code data-trim data-noescape>true</code> or <code data-trim data-noescape>false</code></p>
+					</section>
+					<section>
+						<pre>
+							<code data-trim data-noescape>
+								function isValidEmail(email) {
+									const emailPattern = /@/;
+									return emailPattern.test(email);
+								}
+								
+								console.log(isValidEmail('123')); // false
+								console.log(isValidEmail('abc@abc')); // true
+								console.log(isValidEmail('@abc@')); // true
+							</code>
+						</pre>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h3>Special characters in regular expressions</h3>
+						<ul style="font-size: 0.7em;">
+							<li> <code style="color: #E1BC4A;" data-trim data-noescape>^</code> -
+								Matches the beginning of input. For example, 
+								<code data-trim data-noescape>/^A/</code> does not match the "A" in "an A", but does match the first "A" in "An A".
+							</li>
+						</ul>
+					</section>
+					<section>
+						<h3>Special characters in regular expressions</h3>
+						<ul style="font-size: 0.7em;">
+							<li> <code style="color: #E1BC4A;" data-trim data-noescape>^</code> -
+								Matches the beginning of input. For example, 
+								<code data-trim data-noescape>/^A/</code> does not match the "A" in "an A", but does match the first "A" in "An A".
+							</li>
+							<li>
+								<code style="color: #E1BC4A;" data-trim data-noescape>x*</code> - Matches the item "x" 0 or more times.
+							</li>
+						</ul>
+					</section>
+					<section>
+						<h3>Special characters in regular expressions</h3>
+						<ul style="font-size: 0.7em;">
+							<li> <code style="color: #E1BC4A;" data-trim data-noescape>^</code> -
+								Matches the beginning of input. For example, 
+								<code data-trim data-noescape>/^A/</code> does not match the "A" in "an A", but does match the first "A" in "An A".
+							</li>
+							<li>
+								<code style="color: #E1BC4A;" data-trim data-noescape>x*</code> - Matches the item "x" 0 or more times.
+							</li>
+							<li>
+								<code style="color: #E1BC4A;" data-trim data-noescape>x+</code> - Matches the item "x" 1 or more times.
+							</li>
+						</ul>
+					</section>
+					<section>
+						<h3>Special characters in regular expressions</h3>
+						<ul style="font-size: 0.7em;">
+							<li> <code style="color: #E1BC4A;" data-trim data-noescape>^</code> -
+								Matches the beginning of input. For example, 
+								<code data-trim data-noescape>/^A/</code> does not match the "A" in "an A", but does match the first "A" in "An A".
+							</li>
+							<li>
+								<code style="color: #E1BC4A;" data-trim data-noescape>x*</code> - Matches the item "x" 0 or more times.
+							</li>
+							<li>
+								<code style="color: #E1BC4A;" data-trim data-noescape>x+</code> - Matches the item "x" 1 or more times.
+							</li>
+							<li>
+								<code style="color: #E1BC4A;" data-trim data-noescape>[abc]</code> or <code style="color: #E1BC4A;" data-trim data-noescape>[a-c]</code> -
+									Matches any one of the enclosed characters. You can specify a range of characters by using a hyphen.
+							</li>
+						</ul>
+					</section>
+					<section>
+						<pre>
+							<code data-trim data-noescape>
+								function isValidEmail(email) {
+									const emailPattern = /^[a-zA-Z0-9._%+-]+@/;
+									return emailPattern.test(email);
+								}
+								
+								console.log(isValidEmail('123')); // false
+								console.log(isValidEmail('abc12@abc')); // true
+								console.log(isValidEmail('@abc@')); // false
+							</code>
+						</pre>
+					</section>
+					<section>
+						<h3>A few more special characters</h3>
+						<ul style="font-size: 0.7em;">
+							<li> <code style="color: #E1BC4A;" data-trim data-noescape>$</code> -
+								Matches the end of input. For example, <code data-trim data-noescape>/t$/</code> does not match the "t" in "eater", but does match it in "eat".
+							</li>
+						</ul>
+					</section>
+					<section>
+						<h3>A few more special characters</h3>
+						<ul style="font-size: 0.7em;">
+							<li> <code style="color: #E1BC4A;" data-trim data-noescape>$</code> -
+								Matches the end of input. For example, <code data-trim data-noescape>/t$/</code> does not match the "t" in "eater", but does match it in "eat".
+							</li>
+							<li>
+								<code style="color: #E1BC4A;" data-trim data-noescape>x{n}</code> -Where "n" is a positive integer, matches exactly "n" occurrences of the preceding item "x". 
+							</li>
+						</ul>
+					</section>
+					<section>
+						<h3>A few more special characters</h3>
+						<ul style="font-size: 0.7em;">
+							<li> <code style="color: #E1BC4A;" data-trim data-noescape>$</code> -
+								Matches the end of input. For example, <code data-trim data-noescape>/t$/</code> does not match the "t" in "eater", but does match it in "eat".
+							</li>
+							<li>
+								<code style="color: #E1BC4A;" data-trim data-noescape>x{n}</code> -Where "n" is a positive integer, matches exactly "n" occurrences of the preceding item "x". 
+							</li>
+							<li>
+								<code style="color: #E1BC4A;" data-trim data-noescape>x{n,}</code> - Where "n" is a positive integer, matches at least "n" occurrences of the preceding item "x". 
+							</li>
+						</ul>
+					</section>
+					<section>
+						<h3>A few more special characters</h3>
+						<ul style="font-size: 0.7em;">
+							<li> <code style="color: #E1BC4A;" data-trim data-noescape>$</code> -
+								Matches the end of input. For example, <code data-trim data-noescape>/t$/</code> does not match the "t" in "eater", but does match it in "eat".
+							</li>
+							<li>
+								<code style="color: #E1BC4A;" data-trim data-noescape>x{n}</code> -Where "n" is a positive integer, matches exactly "n" occurrences of the preceding item "x". 
+							</li>
+							<li>
+								<code style="color: #E1BC4A;" data-trim data-noescape>x{n,}</code> - Where "n" is a positive integer, matches at least "n" occurrences of the preceding item "x". 
+							</li>
+							<li>
+								<code style="color: #E1BC4A;" data-trim data-noescape>x{n,m}</code>  -
+								Where "n" is 0 or a positive integer, "m" is a positive integer, and <br> m > n, matches at least "n" and at most "m" occurrences of the preceding item "x".
+							</li>
+						</ul>
+					</section>
+					<section>
+						<pre>
+							<code data-trim data-noescape>
+								function isValidEmail(email) {
+									const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+									return emailPattern.test(email);
+								}
+								
+								console.log(isValidEmail('123@gmail')); // false
+								console.log(isValidEmail('123@gmail.com')); // true
+								console.log(isValidEmail('abc12@abc.ru')); // true
+								console.log(isValidEmail('@abc@')); // false
+							</code>
+						</pre>
+					</section>
+				</section>
+				<section>
+					<h3>Integration with string methods</h3>
+					<p>
+						Regular expressions can be integrated with String methods: match(), matchAll(),
+						replace(), replaceAll(), search(), and split().
+					</p>
+				</section>
+				<section>
+					<section>
+						<h3>Advanced searching with flags</h3>
+						<ul style="font-size: 0.65em;">
+							<li> <code style="color: #E1BC4A;" data-trim data-noescape>i</code> -
+								With this flag the search is case-insensitive: no difference between A and a.
+							</li>
+							<li>
+								<code style="color: #E1BC4A;" data-trim data-noescape>g</code> - With this flag the search looks for all matches, without it - only the first match is returned.
+							</li>
+							<li>
+								<code style="color: #E1BC4A;" data-trim data-noescape>s</code> - Allows ' . ' to match newline characters. 
+							</li>
+							<li>
+								<code style="color: #E1BC4A;" data-trim data-noescape>u</code>  -
+								treat a pattern as a sequence of Unicode code points.
+						</ul>
+					</section>
+					<section>
+						<h4>Example</h4>
+						<pre>
+							<code data-trim data-noescape>
+								const str = 'We will, we will rock you';
+								console.log(str.match(/we/ig)); // [We, we]
+							</code>
+						</pre>
+					</section>
+				</section>
+				<section>
+					<h3>Conclusion</h3>
+					<ul>
+						<li>Practical example</li>
+						<li>Special characters</li>
+						<li>Declaration of a regular expression</li>
+						<li>RegExp.prototype.test()</li>
+						<li>Flags</li>
+					</ul>
+				</section>
+				<section>
+					<h3>Useful links</h3>
+					<ul>
+						<li><a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_expressions">MDN Web Docs</a></li>
+						<li><a target="_blank" href="https://www.w3schools.com/js/js_regexp.asp">w3schools</a></li>
+						<li><a target="_blank" href="https://javascript.info/regexp-introduction">JavaScript.info</a></li>
+					</ul>
+				</section>
+			</div>
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>
